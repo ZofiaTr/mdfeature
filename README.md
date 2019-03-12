@@ -1,4 +1,4 @@
-Library for automatic selection of collective variables.
+Library for automatic selection of features or collective variables in molecular dynamics.
 
 * Free software: GPL
 
