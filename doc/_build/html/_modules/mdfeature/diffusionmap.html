@@ -1,0 +1,315 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mdfeature.diffusionmap &mdash; mdfeature 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> mdfeature
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../_rst/readme.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_source/mdfeature.html">mdfeature package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_rst/authors.html">Authors</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">mdfeature</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>mdfeature.diffusionmap</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for mdfeature.diffusionmap</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. module:: diffusionmap</span>
+<span class="sd">This module allows computation of the diffusionmaps.</span>
+<span class="sd">.. moduleauthor:: ZofiaTr</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">simtk.openmm</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">simtk.openmm.app</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">simtk.unit</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">matplotlib.pyplot</span> <span class="k">import</span> <span class="n">cm</span>
+<span class="kn">import</span> <span class="nn">mdtraj</span> <span class="k">as</span> <span class="nn">md</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">openmmtools.constants</span> <span class="k">import</span> <span class="n">kB</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors.kde</span> <span class="k">import</span> <span class="n">KernelDensity</span>
+
+<span class="kn">import</span> <span class="nn">pydiffmap.diffusion_map</span> <span class="k">as</span> <span class="nn">dfm</span>
+
+<div class="viewcode-block" id="energy"><a class="viewcode-back" href="../../_source/mdfeature.html#mdfeature.diffusionmap.energy">[docs]</a><span class="k">def</span> <span class="nf">energy</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">simulation</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Evaluate energy from the current state.</span>
+
+<span class="sd">    :param openmm.positions state: the current state</span>
+<span class="sd">    :param openmm.Simulation simulation: simulation object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">simulation</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">setPositions</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">simulation</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">getState</span><span class="p">(</span><span class="n">getEnergy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">getPotentialEnergy</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="compute_energy"><a class="viewcode-back" href="../../_source/mdfeature.html#mdfeature.diffusionmap.compute_energy">[docs]</a><span class="k">def</span> <span class="nf">compute_energy</span><span class="p">(</span><span class="n">xyz</span><span class="p">,</span> <span class="n">simulation</span><span class="p">,</span> <span class="n">positions_unit</span><span class="p">,</span> <span class="n">energy_unit</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute energy from the trajectory.</span>
+
+<span class="sd">    :param ndrarray xyz: trajectory</span>
+<span class="sd">    :param openmm.Simulation simulation: simulation object</span>
+<span class="sd">    :param positions_unit: simtk.unit of the positions</span>
+<span class="sd">    :param energy_unit: simtk.unit of the energy</span>
+
+<span class="sd">    :return: numpy ndarray of energy for every trajectory frame.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">Erecompute</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">xyz</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">X_FT</span><span class="p">)):</span>
+                <span class="n">Erecompute</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">energy</span><span class="p">(</span><span class="n">X_xyzFT</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">positions_unit</span><span class="p">,</span> <span class="n">simulation</span><span class="p">)</span><span class="o">.</span><span class="n">value_in_unit</span><span class="p">(</span><span class="n">energy_unit</span><span class="p">)</span>
+
+    <span class="k">return</span>  <span class="n">Erecompute</span></div>
+
+<div class="viewcode-block" id="compute_target_measure"><a class="viewcode-back" href="../../_source/mdfeature.html#mdfeature.diffusionmap.compute_target_measure">[docs]</a><span class="k">def</span> <span class="nf">compute_target_measure</span><span class="p">(</span><span class="n">energy</span><span class="p">,</span> <span class="n">kT</span><span class="p">,</span> <span class="n">energy_unit</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Helper function to compute Boltzman density from energy and temperature.</span>
+
+<span class="sd">    :param numpy.ndarray energy: energy value,  shape number of frames</span>
+<span class="sd">    :param numpy.ndarray kT: kT factor, computed as kT = openmmtools.constants.kB * simtk.unit.kelvin * temperature, where temperature is a double</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">qTargetDistribution</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">energy</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">xyz</span><span class="p">)):</span>
+                <span class="n">betatimesH_unitless</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">energy</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">/</span> <span class="n">kT</span><span class="o">.</span><span class="n">value_in_unit</span><span class="p">(</span><span class="n">energy_unit</span><span class="p">)</span>
+                <span class="n">qTargetDistribution</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">betatimesH_unitless</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">qTargetDistribution</span></div>
+
+<div class="viewcode-block" id="compute_diffusionmaps"><a class="viewcode-back" href="../../_source/mdfeature.html#mdfeature.diffusionmap.compute_diffusionmaps">[docs]</a><span class="k">def</span> <span class="nf">compute_diffusionmaps</span><span class="p">(</span><span class="n">traj_orig</span><span class="p">,</span> <span class="n">nrpoints</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="s1">&#39;bgh&#39;</span><span class="p">,</span> <span class="n">nrneigh</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">weight_params</span><span class="o">=</span><span class="p">{}):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute diffusionmaps using pydiffmap.</span>
+
+<span class="sd">    :param mdtraj.Trajectory traj_orig: trajectory for diffusionmap analysis</span>
+<span class="sd">    :param nrpoints: if None, keep all trajectory, if integer, subsample the trajectory leaving nrpoints of datapoints.</span>
+<span class="sd">    :param epsilon: epsilon parameter in diffusionmap construction.</span>
+<span class="sd">    :param int nrneigh: number of neighbors in diffusionmap construction.</span>
+<span class="sd">    :param weights: weights for TMDmap. If None, no TMDmap but vanilla diffusionmap, if &#39;compute&#39;, weights will be computed using the energy and it requires the dictionary weight_params to be nonempty</span>
+
+<span class="sd">    :rtype: pydiffmap.diffusion_map.DiffusionMap, mdtraj.Trajectory</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># computation of weights for tmdmap</span>
+    <span class="k">if</span> <span class="n">weights</span> <span class="o">==</span> <span class="s1">&#39;compute&#39;</span><span class="p">:</span>
+
+        <span class="k">raise</span> <span class="bp">NotImplemented</span>
+
+        <span class="n">simulation</span> <span class="o">=</span> <span class="n">weight_params</span><span class="p">[</span><span class="s1">&#39;simulation&#39;</span><span class="p">]</span>
+
+        <span class="n">positions</span> <span class="o">=</span> <span class="n">simulation</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">getState</span><span class="p">(</span><span class="n">getPositions</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">getPositions</span><span class="p">()</span>
+        <span class="n">energy_unit</span> <span class="o">=</span> <span class="n">energy</span><span class="p">(</span><span class="n">positions</span><span class="p">,</span> <span class="n">simulation</span><span class="p">)</span><span class="o">.</span><span class="n">unit</span>
+        <span class="n">positions_unit</span> <span class="o">=</span> <span class="n">positions</span><span class="o">.</span><span class="n">unit</span>
+
+        <span class="n">T</span> <span class="o">=</span> <span class="n">weight_params</span><span class="p">[</span><span class="s1">&#39;temperature&#39;</span><span class="p">]</span>
+        <span class="n">kT</span> <span class="o">=</span> <span class="n">kB</span> <span class="o">*</span> <span class="n">T</span> <span class="o">*</span> <span class="n">kelvin</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;TMD map not implemented yet, weights wont be used&#39;</span><span class="p">)</span>
+        <span class="n">E</span> <span class="o">=</span> <span class="n">compute_energy</span><span class="p">(</span><span class="n">traj</span><span class="o">.</span><span class="n">xyz</span><span class="p">,</span> <span class="n">simulation</span><span class="p">,</span> <span class="n">positions_unit</span><span class="p">,</span> <span class="n">energy_unit</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Energy has shape&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">E</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+        <span class="n">qTargetDistribution</span><span class="o">=</span> <span class="n">compute_target_measure</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">kT</span><span class="p">,</span> <span class="n">energy_unit</span><span class="p">)</span>
+        <span class="n">weights</span> <span class="o">=</span>  <span class="n">qTargetDistribution</span>
+
+    <span class="c1"># subsampling</span>
+    <span class="n">landmark_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">traj_orig</span><span class="o">.</span><span class="n">xyz</span><span class="p">)),</span> <span class="n">size</span><span class="o">=</span><span class="n">nrpoints</span><span class="p">)</span>
+
+    <span class="n">traj</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">Trajectory</span><span class="p">(</span><span class="n">traj_orig</span><span class="o">.</span><span class="n">xyz</span><span class="p">[</span><span class="n">landmark_indices</span><span class="p">],</span> <span class="n">traj_orig</span><span class="o">.</span><span class="n">topology</span><span class="p">)</span>
+    <span class="n">traj</span> <span class="o">=</span> <span class="n">traj</span><span class="o">.</span><span class="n">superpose</span><span class="p">(</span><span class="n">traj</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">traj_orig</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Subsampled to&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">traj</span><span class="p">)</span>
+
+    <span class="n">Xresh</span> <span class="o">=</span> <span class="n">traj</span><span class="o">.</span><span class="n">xyz</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">traj</span><span class="o">.</span><span class="n">xyz</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">traj</span><span class="o">.</span><span class="n">xyz</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">traj</span><span class="o">.</span><span class="n">xyz</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">weights</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">mydmap</span> <span class="o">=</span> <span class="n">dfm</span><span class="o">.</span><span class="n">DiffusionMap</span><span class="o">.</span><span class="n">from_sklearn</span><span class="p">(</span><span class="n">epsilon</span> <span class="o">=</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">nrneigh</span><span class="p">,</span> <span class="n">kernel_type</span><span class="o">=</span><span class="s1">&#39;gaussian&#39;</span><span class="p">,</span> <span class="n">n_evecs</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">neighbor_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                     <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">,</span> <span class="n">metric_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">weight_fxn</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">density_fxn</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bandwidth_type</span><span class="o">=</span><span class="s2">&quot;-1/(d+2)&quot;</span><span class="p">,</span>
+                     <span class="n">bandwidth_normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">oos</span><span class="o">=</span><span class="s1">&#39;nystroem&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="bp">NotImplemented</span>
+
+    <span class="n">mydmap</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Xresh</span><span class="p">)</span>
+    <span class="n">traj</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">Trajectory</span><span class="p">(</span><span class="n">Xresh</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">traj</span><span class="o">.</span><span class="n">xyz</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">traj</span><span class="o">.</span><span class="n">xyz</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">traj</span><span class="o">.</span><span class="n">xyz</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span> <span class="n">traj_orig</span><span class="o">.</span><span class="n">topology</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">mydmap</span><span class="p">,</span> <span class="n">traj</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Zofia Trstanova
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

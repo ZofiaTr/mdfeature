@@ -1,0 +1,529 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mdfeature package &mdash; mdfeature 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Authors" href="../_rst/authors.html" />
+    <link rel="prev" title="Overview" href="../_rst/readme.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> mdfeature
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../_rst/readme.html">Overview</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">mdfeature package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-mdfeature.diffusionmap">mdfeature.diffusionmap module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-mdfeature.features">mdfeature.features module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../_rst/authors.html">Authors</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">mdfeature</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>mdfeature package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/_source/mdfeature.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="mdfeature-package">
+<h1>mdfeature package<a class="headerlink" href="#mdfeature-package" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<span class="target" id="module-mdfeature"></span><div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-mdfeature.diffusionmap">
+<span id="mdfeature-diffusionmap-module"></span><h2>mdfeature.diffusionmap module<a class="headerlink" href="#module-mdfeature.diffusionmap" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-diffusionmap"></span><p>This module allows computation of the diffusionmaps.
+.. moduleauthor:: ZofiaTr</p>
+<dl class="function">
+<dt id="mdfeature.diffusionmap.compute_diffusionmaps">
+<code class="descclassname">mdfeature.diffusionmap.</code><code class="descname">compute_diffusionmaps</code><span class="sig-paren">(</span><em>traj_orig</em>, <em>nrpoints=None</em>, <em>epsilon='bgh'</em>, <em>nrneigh=64</em>, <em>weights=None</em>, <em>weight_params={}</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mdfeature/diffusionmap.html#compute_diffusionmaps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mdfeature.diffusionmap.compute_diffusionmaps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute diffusionmaps using pydiffmap.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>traj_orig</strong> (<em>mdtraj.Trajectory</em>) – trajectory for diffusionmap analysis</li>
+<li><strong>nrpoints</strong> – if None, keep all trajectory, if integer, subsample the trajectory leaving nrpoints of datapoints.</li>
+<li><strong>epsilon</strong> – epsilon parameter in diffusionmap construction.</li>
+<li><strong>nrneigh</strong> (<em>int</em>) – number of neighbors in diffusionmap construction.</li>
+<li><strong>weights</strong> – weights for TMDmap. If None, no TMDmap but vanilla diffusionmap, if ‘compute’, weights will be computed using the energy and it requires the dictionary weight_params to be nonempty</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">pydiffmap.diffusion_map.DiffusionMap, mdtraj.Trajectory</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="mdfeature.diffusionmap.compute_energy">
+<code class="descclassname">mdfeature.diffusionmap.</code><code class="descname">compute_energy</code><span class="sig-paren">(</span><em>xyz</em>, <em>simulation</em>, <em>positions_unit</em>, <em>energy_unit</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mdfeature/diffusionmap.html#compute_energy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mdfeature.diffusionmap.compute_energy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute energy from the trajectory.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>xyz</strong> (<em>ndrarray</em>) – trajectory</li>
+<li><strong>simulation</strong> (<em>openmm.Simulation</em>) – simulation object</li>
+<li><strong>positions_unit</strong> – simtk.unit of the positions</li>
+<li><strong>energy_unit</strong> – simtk.unit of the energy</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">numpy ndarray of energy for every trajectory frame.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="mdfeature.diffusionmap.compute_target_measure">
+<code class="descclassname">mdfeature.diffusionmap.</code><code class="descname">compute_target_measure</code><span class="sig-paren">(</span><em>energy</em>, <em>kT</em>, <em>energy_unit</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mdfeature/diffusionmap.html#compute_target_measure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mdfeature.diffusionmap.compute_target_measure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Helper function to compute Boltzman density from energy and temperature.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>energy</strong> (<em>numpy.ndarray</em>) – energy value,  shape number of frames</li>
+<li><strong>kT</strong> (<em>numpy.ndarray</em>) – kT factor, computed as kT = openmmtools.constants.kB * simtk.unit.kelvin * temperature, where temperature is a double</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="mdfeature.diffusionmap.energy">
+<code class="descclassname">mdfeature.diffusionmap.</code><code class="descname">energy</code><span class="sig-paren">(</span><em>state</em>, <em>simulation</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mdfeature/diffusionmap.html#energy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mdfeature.diffusionmap.energy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate energy from the current state.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>state</strong> (<em>openmm.positions</em>) – the current state</li>
+<li><strong>simulation</strong> (<em>openmm.Simulation</em>) – simulation object</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-mdfeature.features">
+<span id="mdfeature-features-module"></span><h2>mdfeature.features module<a class="headerlink" href="#module-mdfeature.features" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-features"></span><p>This module contains functions facilitating feature selection.</p>
+<dl class="function">
+<dt id="mdfeature.features.compute_all_correlations">
+<code class="descclassname">mdfeature.features.</code><code class="descname">compute_all_correlations</code><span class="sig-paren">(</span><em>traj</em>, <em>mydmap</em>, <em>dimension</em>, <em>list_of_functions</em>, <em>list_of_params=None</em>, <em>progress_bar=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mdfeature/features.html#compute_all_correlations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mdfeature.features.compute_all_correlations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls features.correlations_features for first ‘dimension’ eigenvectors.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>traj</strong> (<em>mdtraj.Trajectory</em>) – trajectory to evaluate the features from</li>
+<li><strong>mydmap</strong> (<em>pydiffmap.diffusion_map.Diffusionmap</em>) – diffusionmap object</li>
+<li><strong>list_of_functions</strong> – list of functions computing the features</li>
+<li><strong>dimension</strong> (<em>int</em>) – number of eigenvectors</li>
+<li><strong>dimension</strong> – number of diffusionmap eigenvectors</li>
+<li><strong>nevery</strong> – subsample the trajctory as traj[::nevery] to accelerate the correlation computations</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">dict correlations with the dimension as keys for return of features.correlations_features</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="mdfeature.features.compute_correlation">
+<code class="descclassname">mdfeature.features.</code><code class="descname">compute_correlation</code><span class="sig-paren">(</span><em>v</em>, <em>cv</em>, <em>coeff='pearson'</em>, <em>minmax=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mdfeature/features.html#compute_correlation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mdfeature.features.compute_correlation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Correlation coefftients.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>v</strong> (<em>ndarray</em>) – eigenvector size(n, 1)</li>
+<li><strong>cv</strong> (<em>ndarray</em>) – feature size(n, 1)</li>
+<li><strong>coeff</strong> (<em>str</em>) – pearson or spearmanr, see scipy.stats</li>
+<li><strong>minmax</strong> – renormalize the values to be in [0,1]</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="mdfeature.features.compute_cos_torsion_mdraj">
+<code class="descclassname">mdfeature.features.</code><code class="descname">compute_cos_torsion_mdraj</code><span class="sig-paren">(</span><em>traj</em>, <em>angle_index</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mdfeature/features.html#compute_cos_torsion_mdraj"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mdfeature.features.compute_cos_torsion_mdraj" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return cos of torsions.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mdfeature.features.compute_cv">
+<code class="descclassname">mdfeature.features.</code><code class="descname">compute_cv</code><span class="sig-paren">(</span><em>X_FT</em>, <em>top</em>, <em>cv_indices_chosen</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mdfeature/features.html#compute_cv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mdfeature.features.compute_cv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="mdfeature.features.compute_free_energy">
+<code class="descclassname">mdfeature.features.</code><code class="descname">compute_free_energy</code><span class="sig-paren">(</span><em>cv1</em>, <em>cv2</em>, <em>bins=40</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mdfeature/features.html#compute_free_energy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mdfeature.features.compute_free_energy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Free energy in 2D.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mdfeature.features.compute_torsion">
+<code class="descclassname">mdfeature.features.</code><code class="descname">compute_torsion</code><span class="sig-paren">(</span><em>coordinates</em>, <em>i</em>, <em>j</em>, <em>k</em>, <em>l</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mdfeature/features.html#compute_torsion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mdfeature.features.compute_torsion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute torsion angle defined by four atoms.</p>
+<p>ARGUMENTS</p>
+<p>coordinates (simtk.unit.Quantity wrapping numpy natoms x 3) - atomic coordinates
+i, j, k, l - four atoms defining torsion angle</p>
+<p>NOTES</p>
+<p>Algorithm of Swope and Ferguson [1] is used.</p>
+<p>[1] Swope WC and Ferguson DM. Alternative expressions for energies and forces due to angle bending and torsional energy.
+J. Comput. Chem. 13:585, 1992.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mdfeature.features.compute_torsion_mdraj">
+<code class="descclassname">mdfeature.features.</code><code class="descname">compute_torsion_mdraj</code><span class="sig-paren">(</span><em>traj</em>, <em>angle_index</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mdfeature/features.html#compute_torsion_mdraj"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mdfeature.features.compute_torsion_mdraj" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute torsion angle defined by four atoms.</p>
+<p>ARGUMENTS</p>
+<p>traj (mdtraj trajectory frame) - atomic coordinates
+i, j, k, l - four atoms defining torsion angle</p>
+<p>NOTES</p>
+<p>Algorithm of Swope and Ferguson [1] is used.</p>
+<p>[1] Swope WC and Ferguson DM. Alternative expressions for energies and forces due to angle bending and torsional energy.
+J. Comput. Chem. 13:585, 1992.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mdfeature.features.correlations_cv_torsion_index">
+<code class="descclassname">mdfeature.features.</code><code class="descname">correlations_cv_torsion_index</code><span class="sig-paren">(</span><em>evec</em>, <em>traj</em>, <em>list_of_indices</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mdfeature/features.html#correlations_cv_torsion_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mdfeature.features.correlations_cv_torsion_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>evec: diffmap eigenvector
+traj: trajectory (mdtraj)
+list_of_indices: list of indices to compute torsions from</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mdfeature.features.correlations_features">
+<code class="descclassname">mdfeature.features.</code><code class="descname">correlations_features</code><span class="sig-paren">(</span><em>evec</em>, <em>traj</em>, <em>list_of_functions</em>, <em>list_of_params=None</em>, <em>progress_bar=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mdfeature/features.html#correlations_features"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mdfeature.features.correlations_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute correlations between the eigenvector and a list of functions evaluated on the trajectory, optionally with some parameters taken from list_of_params.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>evec</strong> – diffmap eigenvector</li>
+<li><strong>traj</strong> – trajectory (mdtraj)</li>
+<li><strong>list_of_functions</strong> – list of functions</li>
+<li><strong>(</strong><strong>optional</strong><strong>)</strong> (<em>list_of_params</em>) – list of list_of_params. If None, then functions will be called without parameters. If list_of_params is list, then the length of list_of_functions must equal to list_of_params.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">numpy array of correlations of length of the function list.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="mdfeature.features.create_torsions_list">
+<code class="descclassname">mdfeature.features.</code><code class="descname">create_torsions_list</code><span class="sig-paren">(</span><em>atoms</em>, <em>size=None</em>, <em>print_list=True</em>, <em>append_to=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mdfeature/features.html#create_torsions_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mdfeature.features.create_torsions_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create list of indices for torsion angles.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>atoms</strong> – if np.int - number of atoms to create the combinations from. If list of ints, combinations of these indeces will be generated.</li>
+<li><strong>size</strong> – number of randomly selected quadruples. If size is None, select all, if int, randomly choose int many combinations.</li>
+<li><strong>print_list</strong> (<em>bool</em>) – print the generated list.</li>
+<li><strong>append_to</strong> (<em>list</em>) – append to an existing list.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="mdfeature.features.get_angle_name">
+<code class="descclassname">mdfeature.features.</code><code class="descname">get_angle_name</code><span class="sig-paren">(</span><em>phi_adapt</em>, <em>psi_adapt</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mdfeature/features.html#get_angle_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mdfeature.features.get_angle_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="mdfeature.features.get_index_combinations">
+<code class="descclassname">mdfeature.features.</code><code class="descname">get_index_combinations</code><span class="sig-paren">(</span><em>all_combinations</em>, <em>index</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mdfeature/features.html#get_index_combinations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mdfeature.features.get_index_combinations" title="Permalink to this definition">¶</a></dt>
+<dd><p>assume unique</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mdfeature.features.get_name">
+<code class="descclassname">mdfeature.features.</code><code class="descname">get_name</code><span class="sig-paren">(</span><em>element_idx</em>, <em>table=None</em>, <em>pdb_file=None</em>, <em>format='full'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mdfeature/features.html#get_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mdfeature.features.get_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given index of one atom, return string of the element name in the required format</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>element_idx</strong> (<em>int</em>) – index of one element</li>
+<li><strong>table</strong><strong> (</strong><strong>optional</strong><strong>)</strong> (<em>dict</em>) – table returned by table, bonds = mdtrajectory.topology.to_dataframe()</li>
+<li><strong>pdb_file</strong><strong> (</strong><strong>optional</strong><strong>, </strong><strong>required for table</strong><strong>)</strong> (<em>str</em>) – string containing path to the topology file (pdb)</li>
+<li><strong>format</strong> (<em>str</em>) – format of the name string - ‘full’ default is resName + resSeq + element, ‘short’is resSeq + element</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="mdfeature.features.get_name_torsion">
+<code class="descclassname">mdfeature.features.</code><code class="descname">get_name_torsion</code><span class="sig-paren">(</span><em>indices</em>, <em>table=None</em>, <em>pdb_file=None</em>, <em>format='full'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mdfeature/features.html#get_name_torsion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mdfeature.features.get_name_torsion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given indices of the atom, return string of atom names in the format resName + resSeq + element</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>indices</strong> (<em>list</em>) – list of ints indices of 4 atoms used for torsions</li>
+<li><strong>table</strong> (<em>dict</em>) – table returned by table, bonds = mdtrajectory.topology.to_dataframe()</li>
+<li><strong>pdb_file</strong> (<em>str</em>) – string containing path to the topology file (pdb)</li>
+<li><strong>format</strong> (<em>str</em>) – format of the name string - ‘full’ default is resName + resSeq + element, ‘short’is resSeq + element</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="mdfeature.features.identify_features">
+<code class="descclassname">mdfeature.features.</code><code class="descname">identify_features</code><span class="sig-paren">(</span><em>correlations</em>, <em>all_combinations</em>, <em>remove_nans=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mdfeature/features.html#identify_features"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mdfeature.features.identify_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>Choose two most correlated features.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>correlations</strong> – returned by features.compute_all_correlations</li>
+<li><strong>all_combinations</strong> – parameters of the features (for example indices for the torsions)</li>
+<li><strong>remove_nans</strong> – search only non nans features</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">features_indices - index of the best feature from the function list, correlations_features - the corresponding correlation, features_indices_2 - second best feature, correlations_features_2</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="mdfeature.features.identify_worst_features">
+<code class="descclassname">mdfeature.features.</code><code class="descname">identify_worst_features</code><span class="sig-paren">(</span><em>corr</em>, <em>all_combinations</em>, <em>dimension</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mdfeature/features.html#identify_worst_features"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mdfeature.features.identify_worst_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>Least correlated features, see identify_features for input and output.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../_rst/authors.html" class="btn btn-neutral float-right" title="Authors" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../_rst/readme.html" class="btn btn-neutral float-left" title="Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Zofia Trstanova
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
