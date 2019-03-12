@@ -443,13 +443,14 @@
 
     <span class="c1">#print(get_index_combinations(all_combinations, all_combinations[5]))</span>
 
-<div class="viewcode-block" id="compute_all_correlations"><a class="viewcode-back" href="../../_source/mdfeature.html#mdfeature.features.compute_all_correlations">[docs]</a><span class="k">def</span> <span class="nf">compute_all_correlations</span><span class="p">(</span><span class="n">traj</span><span class="p">,</span> <span class="n">mydmap</span><span class="p">,</span> <span class="n">dimension</span><span class="p">,</span> <span class="n">list_of_functions</span><span class="p">,</span> <span class="n">list_of_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">progress_bar</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="compute_all_correlations"><a class="viewcode-back" href="../../_source/mdfeature.html#mdfeature.features.compute_all_correlations">[docs]</a><span class="k">def</span> <span class="nf">compute_all_correlations</span><span class="p">(</span><span class="n">traj</span><span class="p">,</span> <span class="n">mydmap</span><span class="p">,</span> <span class="n">dimension</span><span class="p">,</span> <span class="n">list_of_functions</span><span class="p">,</span> <span class="n">nevery</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">list_of_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">progress_bar</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calls features.correlations_features for first &#39;dimension&#39; eigenvectors.</span>
 
 <span class="sd">    :param mdtraj.Trajectory traj: trajectory to evaluate the features from</span>
 <span class="sd">    :param pydiffmap.diffusion_map.Diffusionmap mydmap: diffusionmap object</span>
 <span class="sd">    :param list_of_functions: list of functions computing the features</span>
+<span class="sd">    :param nevery: subsample the trajectory and eigenvectors as x[::nevery]</span>
 <span class="sd">    :param dimension: number of eigenvectors</span>
 <span class="sd">    :param int dimension: number of diffusionmap eigenvectors</span>
 <span class="sd">    :param nevery: subsample the trajctory as traj[::nevery] to accelerate the correlation computations</span>
@@ -462,8 +463,8 @@
     <span class="k">for</span> <span class="n">ev_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">dimension</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Dimension &#39;</span><span class="o">+</span><span class="nb">repr</span><span class="p">(</span><span class="n">ev_idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
 
-        <span class="n">evec</span> <span class="o">=</span> <span class="n">mydmap</span><span class="o">.</span><span class="n">evecs</span><span class="p">[:,</span> <span class="n">ev_idx</span><span class="p">]</span>
-        <span class="n">correlations</span><span class="p">[</span><span class="n">ev_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">correlations_features</span><span class="p">(</span><span class="n">evec</span><span class="p">,</span> <span class="n">traj</span><span class="p">,</span> <span class="n">list_of_functions</span><span class="p">,</span> <span class="n">list_of_params</span><span class="o">=</span><span class="n">list_of_params</span><span class="p">,</span> <span class="n">progress_bar</span><span class="o">=</span><span class="n">progress_bar</span><span class="p">)</span>
+        <span class="n">evec</span> <span class="o">=</span> <span class="n">mydmap</span><span class="o">.</span><span class="n">evecs</span><span class="p">[::</span><span class="n">nevery</span><span class="p">,</span> <span class="n">ev_idx</span><span class="p">]</span>
+        <span class="n">correlations</span><span class="p">[</span><span class="n">ev_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">correlations_features</span><span class="p">(</span><span class="n">evec</span><span class="p">,</span> <span class="n">traj</span><span class="p">[::</span><span class="n">nevery</span><span class="p">],</span> <span class="n">list_of_functions</span><span class="p">,</span> <span class="n">list_of_params</span><span class="o">=</span><span class="n">list_of_params</span><span class="p">,</span> <span class="n">progress_bar</span><span class="o">=</span><span class="n">progress_bar</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">correlations</span></div>
 
@@ -503,7 +504,7 @@
         <span class="k">assert</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">correlations_clean</span><span class="p">))</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_combinations_clean</span><span class="p">)</span>
 
         <span class="n">sorted_indeces_clean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">correlations_clean</span><span class="p">))[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">all_combinations_clean</span><span class="p">[</span><span class="n">sorted_indeces_clean</span><span class="p">])</span>
+        <span class="c1">#print(all_combinations_clean[sorted_indeces_clean])</span>
 
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Maximal cv:&#39;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;index:&#39;</span><span class="p">)</span>

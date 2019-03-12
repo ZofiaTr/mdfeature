@@ -258,7 +258,7 @@
 <span class="target" id="module-features"></span><p>This module contains functions facilitating feature selection.</p>
 <dl class="function">
 <dt id="mdfeature.features.compute_all_correlations">
-<code class="descclassname">mdfeature.features.</code><code class="descname">compute_all_correlations</code><span class="sig-paren">(</span><em>traj</em>, <em>mydmap</em>, <em>dimension</em>, <em>list_of_functions</em>, <em>list_of_params=None</em>, <em>progress_bar=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mdfeature/features.html#compute_all_correlations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mdfeature.features.compute_all_correlations" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">mdfeature.features.</code><code class="descname">compute_all_correlations</code><span class="sig-paren">(</span><em>traj</em>, <em>mydmap</em>, <em>dimension</em>, <em>list_of_functions</em>, <em>nevery=1</em>, <em>list_of_params=None</em>, <em>progress_bar=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mdfeature/features.html#compute_all_correlations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mdfeature.features.compute_all_correlations" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calls features.correlations_features for first ‘dimension’ eigenvectors.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -268,6 +268,7 @@
 <li><strong>traj</strong> (<em>mdtraj.Trajectory</em>) – trajectory to evaluate the features from</li>
 <li><strong>mydmap</strong> (<em>pydiffmap.diffusion_map.Diffusionmap</em>) – diffusionmap object</li>
 <li><strong>list_of_functions</strong> – list of functions computing the features</li>
+<li><strong>nevery</strong> – subsample the trajectory and eigenvectors as x[::nevery]</li>
 <li><strong>dimension</strong> (<em>int</em>) – number of eigenvectors</li>
 <li><strong>dimension</strong> – number of diffusionmap eigenvectors</li>
 <li><strong>nevery</strong> – subsample the trajctory as traj[::nevery] to accelerate the correlation computations</li>
