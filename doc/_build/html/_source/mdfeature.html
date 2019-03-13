@@ -182,7 +182,7 @@
 <li><strong>nrpoints</strong> – if None, keep all trajectory, if integer, subsample the trajectory leaving nrpoints of datapoints.</li>
 <li><strong>epsilon</strong> – epsilon parameter in diffusionmap construction.</li>
 <li><strong>nrneigh</strong> (<em>int</em>) – number of neighbors in diffusionmap construction.</li>
-<li><strong>weights</strong> – weights for TMDmap. If None, no TMDmap but vanilla diffusionmap, if ‘compute’, weights will be computed using the energy and it requires the dictionary weight_params to be nonempty</li>
+<li><strong>weights</strong> (<em>str</em>) – if None vanilla diffusionmap, if ‘compute’ then TMDmap correction (requires also weight_params[‘simulation’]=openmm.Simulation and weight_params[‘temperature’]=double). If ‘explicit’ then ndarray of weights should be passed as a key in the dictionary weight_params[‘weights’].  If ‘explicit’ is computed using an old version of pydiffmap which allows for weights to be ndarrays.</li>
 </ul>
 </td>
 </tr>
